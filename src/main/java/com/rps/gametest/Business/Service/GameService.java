@@ -52,7 +52,7 @@ public class GameService {
     public Game joinGame(Player player, String Id) {
             Game game = validateGame(Id);
             if(game.isFull()) throw new GameFullException(Id);
-            if(game.isPlayer1(player.getName()) || game.isPlayer2(player.getName())) throw new NameAlreadyInUse(player.getName());
+            if(game.isPlayer1(player.getName())) throw new NameAlreadyInUse(player.getName());
             game.addPlayer(player);
             game.setGameMessage(String.format("PLAYER2 %s JOINED, WAITING FOR MOVES",player.getName()));
             game.setGameStatus(1);
