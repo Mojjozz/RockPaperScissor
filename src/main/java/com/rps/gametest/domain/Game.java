@@ -134,10 +134,10 @@ public class Game{
             case 2:{
                 int win = checkWinner(p1.getMove(),p2.getMove());
                 if(win == 1){
-                    setGameMessage("Player1 won");
+                    setGameMessage(String.format("%s won",p1.getName()));
                     return new Game(getId(),p1.getName(),getGameMessage(),p1.getMove());
                 }else if(win==2){
-                    setGameMessage("Player2 won");
+                    setGameMessage(String.format("%s won", p2.getName()));
                     return new Game(getId(),p2.getName(),getGameMessage(),p2.getMove());
                 }else{
                     setGameMessage("It is a draw!");
