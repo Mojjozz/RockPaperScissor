@@ -2,7 +2,7 @@
 A simple HTTP-API that friends can use to solve disagreements. 
 The project is based on a Spring boot application
 
-### Technology used
+### Thecnology used
 * Java 14: programming language
 * Spring boot: web application
 * Maven: Building project
@@ -10,21 +10,23 @@ The project is based on a Spring boot application
 Startup guide
 =
 <b>Prerequisite</b>
-  * Maven 3.3+
-  * Java 8 or higher
+  * Maven 
+  * Java X or higher
   * Postman
+  
 
 
 <b>Installation guide</b>
-* Unzip and extract the RockPaperScissor-master folder 
-* Using the command terminal, go to the extracted folder, e.g C:\Program Files\..\RockPaperScissor-master
-* To build the application: in the command terminal type: mvn clean package | this create an JAR file in the C:\Users\..\RockPaperScissor-master\target folder
+* Unzip the file 
+* Using the command terminal, go to the extracted folder, e.g C:\Users\..\rps
+* To build the application type: mvn clean package, this create an JAR file in the C:\Users\..\rps\target folder
 
 <b>Starting the application</b>
 * To run the application type: java -jar target/gametest-0.0.1-SNAPSHOT.jar
+* An alternativ way of running the application is to type: mvnw spring-boot:run
 * The application runs on http://localhost:8080/api/...
 
-### Endpoints
+###Endpoints
 * POST /api/games  -> Creates a new game with a Game ID 
 * POST /api/games/{id}/join -> Join game with specified Game ID 
 *  POST /api/games/{id}/move -> Make a move
@@ -32,7 +34,7 @@ Startup guide
 
 Playing the game
 =
-### Keynotes
+###Keynotes
 * All the POST request should contain a body with the specified keys, make sure the request body is in JSON format.
 * The {Id} should be replaced with the specific GameID generated when creating a game.
 
