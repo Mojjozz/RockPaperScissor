@@ -60,6 +60,7 @@ public class Game{
     }
 
     public String getMove(){
+
         return move;
     }
 
@@ -85,28 +86,32 @@ public class Game{
     }
 
 
-    public boolean isPlayer(String name){
+    public boolean isPlayer1(String name){
 
         return name.equals(p1.getName());
     }
+    public boolean isPlayer2(String name){
+
+        return name.equals(p2.getName());
+    }
 
 
-    public boolean movesLeft(Game game){
-        if(game.p1.getMove()==null){
-            game.setGameMessage(String.format("%s HAVE NOT MADE A MOVE",game.p1.getName()));
-            return true;
-        }else if(game.p2.getMove()==null){
-            game.setGameMessage(String.format("%s HAVE NOT MADE A MOVE",game.p2.getName()));
-            return true;
+    public boolean movesCompleted(){
+        if(p1.getMove()==null){
+            setGameMessage(String.format("%s HAVE NOT MADE A MOVE",p1.getName()));
+            return false;
+        }else if(p2.getMove()==null){
+            setGameMessage(String.format("%s HAVE NOT MADE A MOVE",p2.getName()));
+            return false;
         }
         else{
-            return false;
+            return true;
         }
     }
 
 
 
-    public boolean isFull(Game game){
+    public boolean isFull(){
         if(gameStatus==0){
             return false;
         }else{
@@ -116,7 +121,7 @@ public class Game{
 
 
 
-    public Game gameState(Game game){
+    public Game gameState(){
         switch (gameStatus){
             case 0:{
                 setGameMessage("Waiting for second player");

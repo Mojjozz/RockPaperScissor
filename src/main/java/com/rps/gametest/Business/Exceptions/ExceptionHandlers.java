@@ -62,6 +62,13 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler{
 
 
     }
+
+    @ExceptionHandler(value = {PlayerNotFoundException.class})
+    public ResponseEntity<Object> handlePlayerNotFoundException(PlayerNotFoundException ex, WebRequest request){
+        ErrorMessage error = new ErrorMessage(ex.getLocalizedMessage(),"Player not found");
+        return new ResponseEntity<>(
+                error, new HttpHeaders(),HttpStatus.NOT_FOUND);
+    }
 }
 
 

@@ -22,7 +22,7 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-
+    @CrossOrigin
     @GetMapping(path = "/games/{Id}")
     public Game checkGame(@PathVariable String Id){
       return gameService.checkStatus(Id);

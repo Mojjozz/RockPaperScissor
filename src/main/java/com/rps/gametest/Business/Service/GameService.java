@@ -51,8 +51,8 @@ public class GameService {
 
     public Game joinGame(Player player, String Id) {
             Game game = validateGame(Id);
-            if(game.isFull(game)) throw new GameFullException(Id);
-            if(game.isPlayer(player.getName())) throw new NameAlreadyInUse(player.getName());
+            if(game.isFull()) throw new GameFullException(Id);
+            if(game.isPlayer1(player.getName()) || game.isPlayer2(player.getName())) throw new NameAlreadyInUse(player.getName());
             game.addPlayer(player);
             game.setGameMessage(String.format("PLAYER2 %s JOINED, WAITING FOR MOVES",player.getName()));
             game.setGameStatus(1);
@@ -65,16 +65,18 @@ public class GameService {
     public Game makeMove(Player player, String Id) {
         Game game = validateGame(Id);
         validateMove(player.getMove());
-        if(!game.isFull(game)) throw new WaitingForPlayerException(Id);
-        if(!game.movesLeft(game)) throw new NoMoreMovesException(Id);
+        if(!game.isFull()) throw new WaitingForPlayerException(Id);
+        if(game.movesCompleted()) throw new NoMoreMovesException(Id);
 
-        if (game.isPlayer(player.getName())) {
+        if (game.isPlayer1(player.getName())) {
             game.setP1Move(player.getMove());
-        } else {
+        } else if(game.isPlayer2(player.getName())){
             game.setP2Move(player.getMove());
+        }else{
+            throw new PlayerNotFoundException(player.getName());
         }
 
-        if (!game.movesLeft(game)) {
+        if (game.movesCompleted()) {
             game.setGameMessage("BOTH PLAYERS HAVE MADE MOVES, CHECK GAME WINNER");
             game.setGameStatus(2);
         }
@@ -88,7 +90,7 @@ public class GameService {
 
     public Game checkStatus(String Id) {
         Game game = validateGame(Id);
-        return game.gameState(game);
+        return game.gameState();
     }
 
 
