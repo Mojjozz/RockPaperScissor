@@ -39,7 +39,8 @@ public class GameController {
         return returnValue;
 
     }
-
+    
+    
     @CrossOrigin
     @PostMapping(path = "/games/{Id}/join")
     public Game joinGame(@RequestBody Player player,@PathVariable String Id){
