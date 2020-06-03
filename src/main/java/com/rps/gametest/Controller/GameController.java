@@ -51,7 +51,7 @@ public class GameController {
 
 
 
-
+    @CrossOrigin
     @PostMapping(path="/games/{Id}/move")
     public Game move(@RequestBody Player player,@PathVariable String Id){
 
